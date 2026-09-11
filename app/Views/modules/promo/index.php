@@ -17,24 +17,12 @@ Promo
 <?= $this->section("content") ?>
 <div class="row">
     <div class="col-12">
+
+        <!-- Alert -->
         <?= view('modules/layouts/components/alert') ?>
+        <!-- End Alert -->
 
-        <?php if (session()->getFlashdata('error')) : ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <div class="d-flex align-items-center">
-                    <i class="fa fa-exclamation-circle mr-2"></i>
-                    <div>
-                        <?= session()->getFlashdata('error') ?>
-                    </div>
-                </div>
-
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        <?php endif; ?>
-
-        <div class="card">
+        <div class="card shadow">
             <div class="card-header">
                 <a href="<?= base_url('modules/promo/create') ?>" class="btn btn-primary">
                     <i class="fa fa-plus"></i> Tambah Data

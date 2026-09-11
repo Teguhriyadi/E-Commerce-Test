@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">
+            <a href="<?= base_url('modules/dashboard') ?>">
                 Admin Panel
             </a>
         </div>
@@ -10,30 +10,21 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="index-0.html">General Dashboard</a></li>
-                    <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
-                </ul>
+            <li class="<?= str_starts_with(uri_string(), 'modules/dashboard') ? 'active' : '' ?>">
+                <a class="nav-link" href="<?= base_url('modules/dashboard') ?>">
+                    <i class="fa fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
             </li>
-            <li class="menu-header">Starter</li>
-            <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
-                </ul>
-            </li>
-            <li class=active>
-                <a class="nav-link" href="<?= base_url() ?>modules/promo">
+            <li class="menu-header">Menu</li>
+            <li class="<?= str_starts_with(uri_string(), 'modules/promo') ? 'active' : '' ?>">
+                <a class="nav-link" href="<?= base_url('modules/promo') ?>">
                     <i class="fa fa-bars"></i>
                     <span>Master Promo</span>
                 </a>
             </li>
-            <li class=active>
-                <a class="nav-link" href="<?= base_url() ?>modules/barang">
+            <li class="<?= str_starts_with(uri_string(), 'modules/barang') ? 'active' : '' ?>">
+                <a class="nav-link" href="<?= base_url('modules/barang') ?>">
                     <i class="fa fa-book"></i>
                     <span>Master Barang</span>
                 </a>

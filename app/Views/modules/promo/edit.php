@@ -12,8 +12,8 @@ Promo
 
 <?= $this->section("content") ?>
 <div class="row">
-    <div class="col-12">
-        <div class="card">
+    <div class="col-8">
+        <div class="card shadow">
             <div class="card-header">
                 <a href="<?= base_url('modules/promo') ?>" class="btn btn-danger">
                     <i class="fa fa-sign-out-alt"></i> Kembali
@@ -65,7 +65,7 @@ Promo
                         <i class="fa fa-times"></i> Batal
                     </button>
                     <button type="submit" class="btn btn-success">
-                        <i class="fa fa-times"></i> Simpan
+                        <i class="fa fa-save"></i> Simpan
                     </button>
                 </div>
             </form>
