@@ -27,9 +27,9 @@
                 </ul>
             </li>
             <li class=active>
-                <a class="nav-link" href="blank.html">
-                    <i class="far fa-square"></i>
-                    <span>Blank Page</span>
+                <a class="nav-link" href="<?= base_url() ?>modules/promo">
+                    <i class="fa fa-bars"></i>
+                    <span>Master Promo</span>
                 </a>
             </li>
         </ul>
