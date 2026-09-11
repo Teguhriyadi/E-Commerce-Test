@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\AppController;
+use App\Controllers\BarangController;
 use App\Controllers\PromoController;
 use CodeIgniter\Router\RouteCollection;
 
@@ -17,5 +18,14 @@ $routes->group("modules", function ($routes) {
         $routes->get("(:segment)/edit", [PromoController::class, "edit/$1"]);
         $routes->put('(:segment)/update', [PromoController::class, 'update/$1']);
         $routes->delete('(:segment)/delete', [PromoController::class, 'delete/$1']);
+    });
+
+    $routes->group("barang", function ($routes) {
+        $routes->get("/", [BarangController::class, "index"]);
+        $routes->get("create", [BarangController::class, "create"]);
+        $routes->post("store", [BarangController::class, "store"]);
+        $routes->get("(:segment)/edit", [BarangController::class, "edit/$1"]);
+        $routes->put('(:segment)/update', [BarangController::class, 'update/$1']);
+        $routes->delete('(:segment)/delete', [BarangController::class, 'delete/$1']);
     });
 });

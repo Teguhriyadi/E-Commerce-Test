@@ -32,6 +32,12 @@
                     <span>Master Promo</span>
                 </a>
             </li>
+            <li class=active>
+                <a class="nav-link" href="<?= base_url() ?>modules/barang">
+                    <i class="fa fa-book"></i>
+                    <span>Master Barang</span>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>
