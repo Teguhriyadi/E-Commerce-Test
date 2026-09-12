@@ -29,6 +29,20 @@
                     <span>Master Barang</span>
                 </a>
             </li>
+            <li class="menu-header">Pengaturan</li>
+            <li class="<?= str_starts_with(uri_string(), 'modules/pengaturan-promo') ? 'active' : '' ?>">
+                <a class="nav-link" href="<?= base_url('modules/pengaturan-promo') ?>">
+                    <i class="fa fa-cogs"></i>
+                    <span>Pengaturan Promo</span>
+                </a>
+            </li>
+            <li class="menu-header">Transaksi</li>
+            <li class="<?= str_starts_with(uri_string(), 'modules/penjualan') ? 'active' : '' ?>">
+                <a class="nav-link" href="<?= base_url('modules/penjualan') ?>">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>Penjualan</span>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>

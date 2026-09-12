@@ -2,6 +2,8 @@
 
 use App\Controllers\AppController;
 use App\Controllers\BarangController;
+use App\Controllers\PengaturanPromoController;
+use App\Controllers\PenjualanController;
 use App\Controllers\PromoController;
 use CodeIgniter\Router\RouteCollection;
 
@@ -27,5 +29,22 @@ $routes->group("modules", function ($routes) {
         $routes->get("(:segment)/edit", [BarangController::class, "edit/$1"]);
         $routes->put('(:segment)/update', [BarangController::class, 'update/$1']);
         $routes->delete('(:segment)/delete', [BarangController::class, 'delete/$1']);
+    });
+
+    $routes->group("pengaturan-promo", function ($routes) {
+        $routes->get("/", [PengaturanPromoController::class, "index"]);
+        $routes->get("create", [PengaturanPromoController::class, "create"]);
+        $routes->post("store", [PengaturanPromoController::class, "store"]);
+        $routes->get("(:segment)/detail", [PengaturanPromoController::class, "detail/$1"]);
+        $routes->get("(:segment)/edit", [PengaturanPromoController::class, "edit/$1"]);
+        $routes->put('(:segment)/update', [PengaturanPromoController::class, 'update/$1']);
+        $routes->delete('(:segment)/delete', [PengaturanPromoController::class, 'delete/$1']);
+    });
+
+    $routes->group("penjualan", function ($routes) {
+        $routes->get("/", [PenjualanController::class, "index"]);
+        $routes->post("store", [PenjualanController::class, "store"]);
+        $routes->delete('(:segment)/delete', [PenjualanController::class, 'delete/$1']);
+        $routes->get("clear", [PenjualanController::class, "clear"]);
     });
 });
