@@ -1,0 +1,269 @@
+<?= $this->extend("modules/layouts/master") ?>
+
+<?= $this->section("title") ?>
+
+Pengaturan Promo
+
+<?= $this->endSection() ?>
+
+<?= $this->section("title-page") ?>
+
+<h1>Edit Pengaturan Promo</h1>
+
+<?= $this->endSection() ?>
+
+<?= $this->section("content") ?>
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header">
+                <a href="<?= base_url('modules/pengaturan-promo') ?>" class="btn btn-danger">
+                    <i class="fa fa-sign-out-alt"></i> Kembali
+                </a>
+            </div>
+            <form action="<?= base_url('modules/pengaturan-promo/' . $promo['kode_promo'] . '/update') ?>" method="POST">
+                <?= csrf_field() ?>
+                <input type="hidden" name="_method" value="PUT">
+                <div class="card-body">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <strong>Informasi Promo</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="kode_promo">
+                                            Kode Promo
+                                        </label>
+                                        <input type="text" class="form-control" value="<?= esc($promo['kode_promo']) ?>" readonly>
+                                        <input type="hidden" name="kode_promo" value="<?= esc($promo['kode_promo']) ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <strong>Periode Promo</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="tgl_mulai">Tanggal Mulai</label>
+                                        <input type="date" class="form-control <?= isset($errors['tgl_mulai']) ? 'is-invalid' : '' ?>" name="tgl_mulai" id="tgl_mulai" value="<?= old('tgl_mulai', $periode['tgl_mulai']) ?>">
+                                        <?php if (isset($errors['tgl_mulai'])) : ?>
+                                            <div class="invalid-feedback">
+                                                <?= $errors['tgl_mulai'] ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="tgl_selesai">Tanggal Selesai</label>
+                                        <input type="date" class="form-control <?= isset($errors['tgl_selesai']) ? 'is-invalid' : '' ?>" name="tgl_selesai" id="tgl_selesai" value="<?= old('tgl_selesai', $periode['tgl_selesai']) ?>">
+                                        <?php if (isset($errors['tgl_selesai'])) : ?>
+                                            <div class="invalid-feedback">
+                                                <?= $errors['tgl_selesai'] ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <strong>Aturan Promo</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="tipe_promo">Tipe Promo</label>
+                                        <select class="form-control <?= isset($errors['tipe_promo']) ? 'is-invalid' : '' ?>" name="tipe_promo" id="tipe_promo">
+                                            <option value="">-- Pilih Tipe Promo --</option>
+                                            <option value="PRODUCT_DISCOUNT" <?= old('tipe_promo', $aturan['tipe_promo']) == 'PRODUCT_DISCOUNT' ? 'selected' : '' ?>>Diskon Produk</option>
+                                            <option value="TOTAL_DISCOUNT" <?= old('tipe_promo', $aturan['tipe_promo']) == 'TOTAL_DISCOUNT' ? 'selected' : '' ?>>Potongan Total</option>
+                                            <option value="FREE_SHIPPING" <?= old('tipe_promo', $aturan['tipe_promo']) == 'FREE_SHIPPING' ? 'selected' : '' ?>>Gratis Ongkir</option>
+                                        </select>
+                                        <?php if (isset($errors['tipe_promo'])) : ?>
+                                            <div class="invalid-feedback">
+                                                <?= $errors['tipe_promo'] ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="nilai_promo">Nilai Promo</label>
+                                        <input type="text" class="form-control <?= isset($errors['nilai_promo']) ? 'is-invalid' : '' ?>" name="nilai_promo" id="nilai_promo" placeholder="Masukkan Nilai Promo" value="<?= old('nilai_promo', number_format($aturan['nilai_promo'], 0, ',', '.')) ?>" inputmode="numeric" autocomplete="off">
+                                        <?php if (isset($errors['nilai_promo'])) : ?>
+                                            <div class="invalid-feedback">
+                                                <?= $errors['nilai_promo'] ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4" id="produkPromoSection">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <strong>Produk Promo</strong>
+                            <button type="button" class="btn btn-primary btn-sm" id="btnTambahBarang">
+                                <i class="fa fa-plus"></i> Tambah Barang
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="tableProdukPromo">
+                                    <thead>
+                                        <tr>
+                                            <th width="50%">Barang</th>
+                                            <th width="30%">Minimal Qty</th>
+                                            <th width="20%">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (!empty($detail)) : ?>
+                                            <?php foreach ($detail as $index => $item) : ?>
+                                                <tr class="produk-row">
+                                                    <td>
+                                                        <select class="form-control" name="produk[<?= $index ?>][kode_barang]">
+                                                            <option value="">-- Pilih Barang --</option>
+                                                            <?php foreach ($barang as $itemBarang) : ?>
+                                                                <option value="<?= esc($itemBarang['kode_barang']) ?>" <?= $itemBarang['kode_barang'] == $item['kode_barang'] ? 'selected' : '' ?>>
+                                                                    <?= esc($itemBarang['kode_barang']) ?> - <?= esc($itemBarang['nama_barang']) ?>
+                                                                </option>
+                                                            <?php endforeach; ?>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" name="produk[<?= $index ?>][min_qty]" min="1" value="<?= old('produk.' . $index . '.min_qty', $item['min_qty']) ?>">
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-danger btn-sm btnHapusBarang">
+                                                            <i class="fa fa-trash"></i> Hapus
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php else : ?>
+                                            <tr class="produk-row">
+                                                <td>
+                                                    <select class="form-control" name="produk[0][kode_barang]">
+                                                        <option value="">-- Pilih Barang --</option>
+                                                        <?php foreach ($barang as $itemBarang) : ?>
+                                                            <option value="<?= esc($itemBarang['kode_barang']) ?>">
+                                                                <?= esc($itemBarang['kode_barang']) ?> - <?= esc($itemBarang['nama_barang']) ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control" name="produk[0][min_qty]" min="1" value="1">
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger btn-sm btnHapusBarang">
+                                                        <i class="fa fa-trash"></i> Hapus
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="reset" class="btn btn-danger">
+                        <i class="fa fa-times"></i> Batal
+                    </button>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-save"></i> Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?= $this->endSection() ?>
+<?= $this->section("js-style") ?>
+<script type="text/javascript">
+    const form = document.querySelector('form');
+    const tipePromo = document.getElementById('tipe_promo');
+    const nilaiPromo = document.getElementById('nilai_promo');
+    const produkPromoSection = document.getElementById('produkPromoSection');
+    const btnTambahBarang = document.getElementById('btnTambahBarang');
+    const tableProdukPromo = document.querySelector('#tableProdukPromo tbody');
+
+    nilaiPromo.addEventListener('input', function() {
+        let value = this.value.replace(/\D/g, '');
+        if (value) {
+            this.value = 'Rp ' + new Intl.NumberFormat('id-ID').format(value);
+        } else {
+            this.value = '';
+        }
+    });
+
+    function toggleProdukPromo() {
+        if (tipePromo.value === 'PRODUCT_DISCOUNT') {
+            produkPromoSection.style.display = 'block';
+        } else {
+            produkPromoSection.style.display = 'none';
+        }
+    }
+
+    tipePromo.addEventListener('change', toggleProdukPromo);
+    toggleProdukPromo();
+
+    let index = <?= !empty($detail) ? count($detail) : 1 ?>;
+    btnTambahBarang.addEventListener('click', function() {
+        const row = document.createElement('tr');
+        row.classList.add('produk-row');
+        row.innerHTML = `
+            <td>
+                <select class="form-control" name="produk[${index}][kode_barang]">
+                    <option value="">-- Pilih Barang --</option>
+                    <?php foreach ($barang as $item) : ?>
+                        <option value="<?= esc($item['kode_barang']) ?>">
+                            <?= esc($item['kode_barang']) ?> - <?= esc($item['nama_barang']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+            <td>
+                <input type="number" class="form-control" name="produk[${index}][min_qty]" min="1" value="1">
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger btn-sm btnHapusBarang">
+                    <i class="fa fa-trash"></i> Hapus
+                </button>
+            </td>
+        `;
+        tableProdukPromo.appendChild(row);
+        index++;
+    });
+
+    document.addEventListener('click', function(event) {
+        const button = event.target.closest('.btnHapusBarang');
+        if (!button) {
+            return;
+        }
+        const rows = tableProdukPromo.querySelectorAll('.produk-row');
+        if (rows.length <= 1) {
+            alert('Minimal harus ada 1 barang.');
+            return;
+        }
+        button.closest('.produk-row').remove();
+    });
+
+    form.addEventListener('submit', function() {
+        nilaiPromo.value = nilaiPromo.value.replace(/\D/g, '');
+    });
+</script>
+<?= $this->endSection() ?>
