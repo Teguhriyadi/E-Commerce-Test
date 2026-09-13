@@ -2,6 +2,9 @@
 
 Aplikasi transaksi penjualan sederhana yang dibangun menggunakan **CodeIgniter 4**.
 
+# Link Demo Program
+<a href="http://test-penjualan.satsetsolution.my.id/modules/dashboard" target="_blank">Lihat Demo Program</a>
+
 ## Fitur
 
 - Dashboard
