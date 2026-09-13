@@ -56,3 +56,7 @@ Aplikasi transaksi penjualan sederhana yang dibangun menggunakan **CodeIgniter 4
 - jQuery
 - Chart.js
 - Dompdf
+
+## Rancangan Database
+
+<img src="public/assets/img/rancangan-database.png" alt="Dashboard" width="800">
