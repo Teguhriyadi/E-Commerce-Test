@@ -43,8 +43,14 @@ $routes->group("modules", function ($routes) {
 
     $routes->group("penjualan", function ($routes) {
         $routes->get("/", [PenjualanController::class, "index"]);
+        $routes->get("create", [PenjualanController::class, "create"]);
         $routes->post("store", [PenjualanController::class, "store"]);
         $routes->delete('(:segment)/delete', [PenjualanController::class, 'delete/$1']);
         $routes->get("clear", [PenjualanController::class, "clear"]);
+        $routes->post("checkout", [PenjualanController::class, "checkout"]);
+        $routes->get("(:segment)/invoice", [PenjualanController::class, "invoice/$1"]);
+        $routes->get("(:segment)/pdf", [PenjualanController::class, "pdfInvoice/$1"]);
     });
+
+
 });
