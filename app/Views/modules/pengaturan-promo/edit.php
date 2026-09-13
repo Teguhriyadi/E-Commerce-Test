@@ -75,8 +75,7 @@ Pengaturan Promo
                             </div>
                         </div>
                     </div>
-
-                    <!-- PRODUK PROMO -->
+                    
                     <div id="produkPromoSection" class="mt-3">
                         <div class="card border mb-0">
                             <div class="card-header bg-light d-flex justify-content-between align-items-center">

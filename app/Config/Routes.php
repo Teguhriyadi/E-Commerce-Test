@@ -11,7 +11,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 $routes->group("modules", function ($routes) {
-    $routes->get("apps", [AppController::class, "apps"]);
+    $routes->get("dashboard", [AppController::class, "dashboard"]);
 
     $routes->group("promo", function ($routes) {
         $routes->get("/", [PromoController::class, "index"]);
