@@ -17,7 +17,7 @@ class CreatePromoAturanTable extends Migration
             ],
             'kode_promo' => [
                 'type'       => 'VARCHAR',
-                'constraint' => 20,
+                'constraint' => 100,
             ],
             'tipe_promo' => [
                 'type'       => 'VARCHAR',

@@ -17,11 +17,11 @@ class CreatePromoDetailTable extends Migration
             ],
             'kode_promo' => [
                 'type'       => 'VARCHAR',
-                'constraint' => 20,
+                'constraint' => 100,
             ],
             'kode_barang' => [
                 'type'       => 'VARCHAR',
-                'constraint' => 20,
+                'constraint' => 100,
             ],
             'min_qty' => [
                 'type'       => 'INT',

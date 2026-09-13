@@ -17,7 +17,7 @@ class CreatePromoPeriodeTable extends Migration
             ],
             'kode_promo' => [
                 'type'       => 'VARCHAR',
-                'constraint' => 20,
+                'constraint' => 100,
             ],
             'tgl_mulai' => [
                 'type' => 'DATE',

@@ -24,7 +24,7 @@ class CreatePenjualanHeaderDetailTable extends Migration
 
             'kode_barang' => [
                 'type'       => 'VARCHAR',
-                'constraint' => 255,
+                'constraint' => 100,
                 'null'       => true
             ],
 
