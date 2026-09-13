@@ -8,7 +8,10 @@ use App\Controllers\PromoController;
 use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
-$routes->get('/', 'Home::index');
+$routes->get("/", function() {
+    return redirect()
+        ->to(base_url("modules/dashboard")); 
+});
 
 $routes->group("modules", function ($routes) {
     $routes->get("dashboard", [AppController::class, "dashboard"]);
