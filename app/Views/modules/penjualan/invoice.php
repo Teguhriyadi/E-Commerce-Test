@@ -50,6 +50,8 @@ Invoice Penjualan
 
 <?= $this->section('content') ?>
 
+<?= view("modules/layouts/components/alert") ?>
+
 <div class="d-flex justify-content-between align-items-center mb-4 no-print">
     <a href="<?= base_url('modules/penjualan') ?>"
        class="btn btn-danger font-weight-bold px-4 shadow-sm"
@@ -60,7 +62,7 @@ Invoice Penjualan
         <a href="<?= base_url('modules/penjualan/' . $transaksi['no_transaksi'] . '/pdf') ?>"
            class="btn btn-primary font-weight-bold px-4"
            style="border-radius: 8px;">
-            <i class="fa fa-file-pdf"></i> PDF
+            <i class="fa fa-file-pdf"></i> Cetak PDF
         </a>
     </div>
 </div>

@@ -33,7 +33,7 @@ Transaksi Penjualan
                     <?= csrf_field() ?>
                     <div class="row align-items-end">
                         <div class="col-md-7 mb-3 mb-md-0">
-                            <label class="form-label font-weight-medium text-secondary small text-uppercase">Pilih Barang</label>
+                            <label class="form-label font-weight-medium small text-uppercase">Pilih Barang</label>
                             <select name="kode_barang" class="form-control shadow-sm" required style="border-radius: 8px;">
                                 <option value="">-- Pilih Barang --</option>
                                 <?php foreach ($barangs as $b): ?>
@@ -44,11 +44,11 @@ Transaksi Penjualan
                             </select>
                         </div>
                         <div class="col-md-2 mb-3 mb-md-0">
-                            <label class="form-label font-weight-medium text-secondary small text-uppercase">Quantity (Qty)</label>
-                            <input type="number" name="qty" class="form-control shadow-sm text-center" value="1" min="1" required style="border-radius: 8px;">
+                            <label class="form-label font-weight-medium small text-uppercase">Quantity (Qty)</label>
+                            <input type="number" name="qty" class="form-control text-center" value="1" min="1" required style="border-radius: 8px;">
                         </div>
                         <div class="col-md-3">
-                            <button type="submit" class="btn btn-success font-weight-bold w-100 py-2 shadow-sm" style="border-radius: 8px;">
+                            <button type="submit" class="btn btn-success font-weight-bold w-100 py-2" style="border-radius: 8px;">
                                 <i class="fa fa-cart-plus mr-1"></i> Tambah
                             </button>
                         </div>
@@ -125,7 +125,7 @@ Transaksi Penjualan
                                     </tr>
                                 <?php endforeach; ?>
                                 <tr style="background-color: #fcfcfc;">
-                                    <td colspan="5" class="text-right font-weight-bold py-3 text-secondary">Total Sementara:</td>
+                                    <td colspan="5" class="text-right font-weight-bold py-3">Total Sementara:</td>
                                     <td colspan="2" class="font-weight-bold text-dark py-3" style="font-size: 1.1rem;">Rp <?= number_format($grand_total_sementara, 0, ',', '.') ?></td>
                                 </tr>
                             <?php endif; ?>
@@ -162,13 +162,13 @@ Transaksi Penjualan
                         <div class="row">
                             <div class="col-md-4 mb-3">
                                 <div class="form-group mb-0">
-                                    <label class="form-label font-weight-medium text-secondary small text-uppercase">Nama Customer</label>
+                                    <label class="form-label font-weight-medium small text-uppercase">Nama Customer</label>
                                     <input type="text" name="customer" class="form-control shadow-sm" placeholder="Masukkan nama pembeli..." required style="border-radius: 8px;">
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <div class="form-group mb-0">
-                                    <label class="form-label font-weight-medium text-secondary small text-uppercase">PPN (11%)</label>
+                                    <label class="form-label font-weight-medium small text-uppercase">PPN (11%)</label>
                                     <?php
                                     $ppn = ($grand_total_sementara ?? 0) * 0.11;
                                     $grand_total_final = ($grand_total_sementara ?? 0) + $ppn;
@@ -187,8 +187,10 @@ Transaksi Penjualan
                                 <h3 class="text-success font-weight-bold mb-0">Rp <?= number_format($grand_total_final, 0, ',', '.') ?></h3>
                             </div>
                             <div>
-                                <button type="button" class="btn btn-secondary font-weight-bold px-3 py-2 shadow-sm mr-2" style="border-radius: 8px;" onclick="toggleFormCheckout()">Batal</button>
-                                <button type="submit" class="btn btn-success font-weight-bold px-4 py-2 shadow-sm" style="border-radius: 8px;">
+                                <button type="button" class="btn btn-secondary font-weight-bold px-3 py-2 shadow-sm mr-2" style="border-radius: 8px;" onclick="toggleFormCheckout()">
+                                    <i class="fa fa-times"></i> Batal
+                                </button>
+                                <button onclick="return confirm('Yakin ? Ingin Memproses & Cetak Invoice?')" type="submit" class="btn btn-success font-weight-bold px-4 py-2 shadow-sm" style="border-radius: 8px;">
                                     <i class="fa fa-print mr-1"></i> Simpan & Cetak Invoice
                                 </button>
                             </div>
